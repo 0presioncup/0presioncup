@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>0 Presion</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="header">
+  <div class="container">
+    <h1 class="title">0 PRESION CUP 2025</h1>
+    <p class="subtitle">La competencia de fútbol amateur más importante del año</p>
+    <button id="themeToggle" aria-label="Cambiar tema" class="theme-toggle">🌙</button>
+  </div>
+</header>
+
+  <main>
+
+    <section class="hero-twitch">
+      <div class="container">
+        <div id="twitch-embed" class="twitch-embed"></div>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <div class="container">
+        <p class="info-text">
+          Participa en el torneo con tu equipo. Grupos, eliminatorias y final presencial. Todos los partidos serán retransmitidos en directo.
+        </p>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <div class="container form-container">
+        <form id="teamForm" class="team-form" novalidate>
+          <input type="text" name="equipo" placeholder="Nombre del equipo" required />
+          <input type="text" name="capitan" placeholder="Capitan" required />
+          <input type="tel" name="telefono" placeholder="Número de Teléfono" required />
+          <button type="submit">Inscribir equipo</button>
+          <p id="mensaje" class="form-message"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="sponsors-section">
+      <div class="container sponsor-carousel">
+        <img src="https://axendaurbanaoporrino.com/wp-content/uploads/2024/01/concello_porrino3c3.png" alt="Sponsor Concello do Porriño" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz0R-_KJgdQEtsN76Jhv3GfOya4ZtpyweyWQ&s" alt="Sponsor 2" />
+        <img src="https://www.ccamorea.es/public_html/wp-content/uploads/2019/10/cafeteria_scala.jpg" alt="Sponsor 3" />
+        <img src="https://axendaurbanaoporrino.com/wp-content/uploads/2024/01/concello_porrino3c3.png" alt="Sponsor Concello do Porriño" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz0R-_KJgdQEtsN76Jhv3GfOya4ZtpyweyWQ&s" alt="Sponsor 2" />
+        <img src="https://www.ccamorea.es/public_html/wp-content/uploads/2019/10/cafeteria_scala.jpg" alt="Sponsor 3" />
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="container contact-info">
+        <p><strong>Email:</strong> contacto@0presion.com</p>
+        <p><strong>WhatsApp:</strong> +34 600 123 456</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 0 Presion| Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel de Administración - EL GRAN TORNEO 2025</title>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --accent-color: #3b82f6;
+      --background-light: #f9fafb;
+      --background-dark: #ffffff;
+      --text-color: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --success-color: #22c55e;
+      --error-color: #ef4444;
+    }
+
+    body.dark-theme {
+      --primary-color: #2563eb;
+      --accent-color: #3b82f6;
+      --background-light: #1e293b;
+      --background-dark: #0f172a;
+      --text-color: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --success-color: #22c55e;
+      --error-color: #ef4444;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-light);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 900px;
+      margin: 2rem auto;
+      background-color: var(--background-dark);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgb(37 99 235 / 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    #themeToggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    #themeToggle:hover {
+      color: var(--accent-color);
+    }
+
+    ul#equiposLista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 400px;
+      overflow-y: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--background-light);
+      color: var(--text-color);
+      box-shadow: inset 0 0 10px rgb(0 0 0 / 0.05);
+      transition: background-color 0.3s ease;
+    }
+
+    ul#equiposLista li {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    ul#equiposLista li:last-child {
+      border-bottom: none;
+    }
+
+    ul#equiposLista li strong {
+      font-size: 1.1rem;
+      color: var(--primary-color);
+    }
+
+    .btn-clear {
+      margin-top: 1.5rem;
+      background-color: var(--error-color);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      color: white;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+      width: 100%;
+      max-width: 200px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-clear:hover {
+      background-color: #b91c1c;
+    }
+
+    p#msg {
+      text-align: center;
+      margin-top: 1rem;
+      font-weight: 600;
+      color: var(--success-color);
+    }
+  </style>
+</head>
+<body>
+  <button id="themeToggle" aria-label="Cambiar tema">🌙</button>
+
+  <div class="container">
+    <h1>Equipos Inscritos</h1>
+    <ul id="equiposLista">
+      <li>Cargando equipos...</li>
+    </ul>
+    <button class="btn-clear" id="btnClear">Borrar todas las inscripciones</button>
+    <p id="msg"></p>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const equiposLista = document.getElementById('equiposLista');
+    const btnClear = document.getElementById('btnClear');
+    const msg = document.getElementById('msg');
+
+    // Carga tema guardado
+    function loadTheme() {
+      const temaGuardado = localStorage.getItem('tema');
+      if (temaGuardado === 'dark') {
+        body.classList.add('dark-theme');
+        themeToggle.textContent = '☀️';
+      } else {
+        themeToggle.textContent = '🌙';
+      }
+    }
+
+    loadTheme();
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-theme');
+      if (body.classList.contains('dark-theme')) {
+        localStorage.setItem('tema', 'dark');
+        themeToggle.textContent = '☀️';
+      } else {
+        localStorage.setItem('tema', 'light');
+        themeToggle.textContent = '🌙';
+      }
+    });
+
+    // Mostrar equipos
+    function mostrarEquipos() {
+      const equipos = JSON.parse(localStorage.getItem('equipos')) || [];
+      equiposLista.innerHTML = '';
+
+      if (equipos.length === 0) {
+        equiposLista.innerHTML = '<li>No hay equipos inscritos todavía.</li>';
+        return;
+      }
+
+      equipos.forEach((equipo, i) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <strong>${equipo.equipo}</strong><br>
+          Capitán: ${equipo.capitan}<br>
+          Teléfono: ${equipo.telefono}
+        `;
+        equiposLista.appendChild(li);
+      });
+    }
+
+    mostrarEquipos();
+
+    // Borrar equipos
+    btnClear.addEventListener('click', () => {
+      if (confirm('¿Estás seguro de borrar todas las inscripciones?')) {
+        localStorage.removeItem('equipos');
+        mostrarEquipos();
+        msg.textContent = '✅ Inscripciones borradas correctamente.';
+        setTimeout(() => { msg.textContent = ''; }, 3000);
+      }
+    });
+  </script>
+</body>
+</html>
