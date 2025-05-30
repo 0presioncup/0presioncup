@@ -342,3 +342,54 @@ body {
     font-size: 0.9rem;
   }
 }
+
+
+.category-section {
+  background-color: var(--background-dark);
+  color: var(--text-color);
+  padding: 3rem 2rem;
+  margin: 3rem auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  text-align: center;
+  max-width: 900px;
+}
+
+.category-select {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-color);
+  background-color: var(--background-light);
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.group-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.group-box {
+  background-color: var(--background-light);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  border-left: 5px solid var(--accent-color);
+}
+
+.group-title {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.group-team {
+  margin: 0.3rem 0;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
