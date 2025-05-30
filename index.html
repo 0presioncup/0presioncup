@@ -31,6 +31,22 @@
       </div>
     </section>
 
+    <section class="category-section container">
+  <h2 class="title">Categorías del Torneo</h2>
+  <p class="subtitle">Selecciona una categoría para ver sus grupos</p>
+  
+  <select id="categorySelect" class="category-select">
+    <option value="" disabled selected>-- Elige una categoría --</option>
+    <option value="sub12">Sub-12</option>
+    <option value="sub16">Sub-16</option>
+    <option value="libre">Libre</option>
+    <option value="femenino">Femenino</option>
+  </select>
+
+  <div id="groupContainer" class="group-container"></div>
+</section>
+
+
     <section class="form-section">
       <div class="container form-container">
         <form id="teamForm" class="team-form" novalidate>
